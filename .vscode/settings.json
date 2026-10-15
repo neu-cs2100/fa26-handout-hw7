@@ -1,0 +1,13 @@
+{
+    "files.exclude": {
+        ".devcontainer": true,
+        ".vscode": true,
+        ".github": true,
+        "requirements.txt": true,
+    },
+    "workbench.editorAssociations": {
+        "{git}:/**/*.{arr}": "default"
+    },
+    "pyret-parley.defaultContext": "url-file(\"https://raw.githubusercontent.com/neu-pdi/cs2000-public-resources/refs/heads/main/static/\",\"cs2000.arr\")"
+}
+
