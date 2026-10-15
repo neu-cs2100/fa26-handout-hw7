@@ -6,7 +6,8 @@
 
 In this homework assignment, you will practice:
 
-- Calculating and interpreting mean, median, and variance
+- Reading Numpy documentation
+- Calculating and using mean, median, and variance
 - Binning numerical variables
 - Visualizing data
 
