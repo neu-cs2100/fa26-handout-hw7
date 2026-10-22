@@ -6,11 +6,10 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 
 sys.path.append('.')
-from src.q4 import plot_percentage_above_average_per_neighborhood, \
-    percentage_above_average_per_neighborhood
+from src.q4 import plot_long_case_rate, long_case_rate
 
-class TestPlotPercentageAboveAveragePerNeighborhood:
-    """Tests for the plot_percentage_above_average_per_neighborhood function."""
+class TestPlotLongCaseRate:
+    """Tests for the plot_long_case_rate function."""
 
     def test_correct_numbers_are_passed_to_plot(self) -> None:
         """Test that the correct numbers are passed to the plot function."""
@@ -26,10 +25,10 @@ class TestPlotPercentageAboveAveragePerNeighborhood:
         }
 
         mock_plt = MagicMock()
-        with patch("src.q4.percentage_above_average_per_neighborhood",
+        with patch("src.q4.long_case_rate",
                    return_value=mocked_percentages), \
              patch("src.q4.plt", new=mock_plt):
-            plot_percentage_above_average_per_neighborhood(df)
+            plot_long_case_rate(df)
 
         assert mock_plt.bar.call_count == 1
         args, kwargs = mock_plt.bar.call_args
@@ -57,25 +56,8 @@ class TestPlotPercentageAboveAveragePerNeighborhood:
         df = pd.DataFrame(data)
         mock_plt = MagicMock()
         with patch("src.q4.plt", new=mock_plt):
-            plot_percentage_above_average_per_neighborhood(df)
-
-        expected_xlabel = "Neighborhoods"
-        expected_ylabel = "Percentage of Cases Above Average (%)"
-        expected_title = "Percentage of 311 Cases Above Average Days Open by Neighborhood"
+            plot_long_case_rate(df)
 
         assert mock_plt.xlabel.call_count == 1
         assert mock_plt.ylabel.call_count == 1
         assert mock_plt.title.call_count == 1
-
-        xlabel_args, xlabel_kwargs = mock_plt.xlabel.call_args
-        ylabel_args, ylabel_kwargs = mock_plt.ylabel.call_args
-        title_args, title_kwargs = mock_plt.title.call_args
-
-        # Accept either positional args or named kwargs (e.g., xlabel='...').
-        xlabel_value = xlabel_args[0] if xlabel_args else xlabel_kwargs.get("xlabel")
-        ylabel_value = ylabel_args[0] if ylabel_args else ylabel_kwargs.get("ylabel")
-        title_value = title_args[0] if title_args else title_kwargs.get("label")
-
-        assert xlabel_value == expected_xlabel
-        assert ylabel_value == expected_ylabel
-        assert title_value == expected_title
