@@ -17,11 +17,11 @@ None.
 
 Example usage:
 
-numbers = [1.0, 1.0, 1.0, 1.0, 1.0, 100.0]
+numbers = [1.0] * 100 + [10000.0]
 calculate_statistics(numbers)
-    # {'mean': 17.5, 'median': 1.0, 'variance': 1361.25, 'min': 1, 'max': 100}
+    # {'mean': 100.0, 'median': 1.0, 'variance': 980100.0, 'min': 1.0, 'max': 10000.0}
 calculate_statistics(numbers, ignore_outliers=True)
-    # {'mean': 1.0, 'median': 1.0, 'variance': 0, 'min': 1, 'max': 1}
+    # {'mean': 1.0, 'median': 1.0, 'variance': 0.0, 'min': 1.0, 'max': 1.0}
 calculate_statistics([])
     # {'mean': None, 'median': None, 'variance': None, 'min': None, 'max': None}
 
